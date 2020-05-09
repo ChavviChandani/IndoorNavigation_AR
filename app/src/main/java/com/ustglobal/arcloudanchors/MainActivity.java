@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Anchor anchor;
     private AnchorNode anchorNode;
     private AppAnchorState appAnchorState = AppAnchorState.NONE;
-    private String ELECTRONICS = "electronics_DB";
-    private String TOYS = "toys_DB";
-    private String TV_APPLIANCES = "tv_DB";
-    private String CLOTHING = "clothing_DB";
+    private String APARTMENT18 = "apartment18_DB";
+    private String APARTMENT30 = "apartment18_DB";
+    private String PACKENHAMHOUSE = "packenhamHouse_DB";
+    private String FIREEXIT = "fireExit_DB";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             if (extras == null) {
                 FROM = null;
             } else {
-                FROM = extras.getString(LauncherActivity.FROM);
-                MODE = extras.getString(LauncherActivity.MODE);
+                FROM = extras.getString(Home.FROM);
+                MODE = extras.getString(Home.MODE);
             }
         }
 
@@ -97,14 +97,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 String anchorId = anchor.getCloudAnchorId();
                 anchorList.add(anchorId);
 
-                if (FROM.equalsIgnoreCase(LauncherActivity.ELECTRONICS)) {
-                    tinydb.putListString(ELECTRONICS, anchorList);
-                } else if (FROM.equalsIgnoreCase(LauncherActivity.TOYS)) {
-                    tinydb.putListString(TOYS, anchorList);
-                } else if (FROM.equalsIgnoreCase(LauncherActivity.TV_APPLIANCES)) {
-                    tinydb.putListString(TV_APPLIANCES, anchorList);
-                } else if (FROM.equalsIgnoreCase(LauncherActivity.CLOTHING)) {
-                    tinydb.putListString(CLOTHING, anchorList);
+                if (FROM.equalsIgnoreCase(Home.APARTMENT18)) {
+                    tinydb.putListString(APARTMENT18, anchorList);
+                } else if (FROM.equalsIgnoreCase(Home.APARTMENT30)) {
+                    tinydb.putListString(APARTMENT30, anchorList);
+                } else if (FROM.equalsIgnoreCase(Home.PACKENHAMHOUSE)) {
+                    tinydb.putListString(PACKENHAMHOUSE, anchorList);
+                } else if (FROM.equalsIgnoreCase(Home.FIREEXIT)) {
+                    tinydb.putListString(FIREEXIT, anchorList);
                 }
 
                 showToast("Anchor hosted successfully. Anchor Id: " + anchorId);
@@ -115,14 +115,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         resolve.setOnClickListener(view -> {
             ArrayList<String> stringArrayList = new ArrayList<>();
-            if (FROM.equalsIgnoreCase(LauncherActivity.ELECTRONICS)) {
-                stringArrayList = tinydb.getListString(ELECTRONICS);
-            } else if (FROM.equalsIgnoreCase(LauncherActivity.TOYS)) {
-                stringArrayList = tinydb.getListString(TOYS);
-            } else if (FROM.equalsIgnoreCase(LauncherActivity.TV_APPLIANCES)) {
-                stringArrayList = tinydb.getListString(TV_APPLIANCES);
-            } else if (FROM.equalsIgnoreCase(LauncherActivity.CLOTHING)) {
-                stringArrayList = tinydb.getListString(CLOTHING);
+            if (FROM.equalsIgnoreCase(Home.APARTMENT18)) {
+                stringArrayList = tinydb.getListString(APARTMENT18);
+            } else if (FROM.equalsIgnoreCase(Home.APARTMENT30)) {
+                stringArrayList = tinydb.getListString(APARTMENT30);
+            } else if (FROM.equalsIgnoreCase(Home.PACKENHAMHOUSE)) {
+                stringArrayList = tinydb.getListString(PACKENHAMHOUSE);
+            } else if (FROM.equalsIgnoreCase(Home.FIREEXIT)) {
+                stringArrayList = tinydb.getListString(FIREEXIT);
             }
 
             for (int i = 0; i < stringArrayList.size(); i++) {

@@ -5,8 +5,8 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_list"
-    tools:context=".LauncherActivity">
+    android:background="@drawable/home_background"
+    tools:context=".Home">
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -41,19 +41,11 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:text="Hi, John."
-            android:textColor="@android:color/white"
-            android:textSize="25sp" />
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
             android:paddingVertical="24dp"
-            android:text="What are you looking for?"
+            android:text="Where do you want to go?"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
@@ -75,25 +67,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="8dp"
-            android:text="Find in AR" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_edittext_bg"
-
-            android:hint="Type something"
-            android:textSize="14dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="Popular"
-            android:textSize="14dp"
-            android:textStyle="bold" />
+            android:text="Navigate in AR" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,7 +84,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/electronic_btn"
+                    android:id="@+id/apartment18Btn"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
@@ -118,7 +92,7 @@
                     android:fitsSystemWindows="true"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/electronics_icon" />
+                    android:src="@drawable/homepage" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -126,7 +100,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:paddingHorizontal="5dp"
-                    android:text="Electronics"
+                    android:text="APARTMENT 18"
                     android:textColor="@android:color/black"
                     android:textSize="12dp" />
 
@@ -139,7 +113,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/toys_btn"
+                    android:id="@+id/apartment30Btn"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
@@ -147,7 +121,7 @@
                     android:fitsSystemWindows="true"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/toys_icon" />
+                    android:src="@drawable/homepage" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -155,7 +129,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:paddingHorizontal="5dp"
-                    android:text="Toys &amp; Baby"
+                    android:text="APARTMENT 30"
                     android:textColor="@android:color/black"
                     android:textSize="12dp" />
 
@@ -168,7 +142,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/tv_btn"
+                    android:id="@+id/packenhamhouseBtn"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
@@ -176,7 +150,7 @@
                     android:fitsSystemWindows="true"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/tv_appliances_icon" />
+                    android:src="@drawable/packenhamhouse" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -184,7 +158,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:paddingHorizontal="5dp"
-                    android:text="TV &amp; Appliances"
+                    android:text="PACKENHAM HOUSE"
                     android:textColor="@android:color/black"
                     android:textSize="12dp" />
 
@@ -197,7 +171,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/clothing_btn"
+                    android:id="@+id/fireexitBtn"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
@@ -205,7 +179,7 @@
                     android:fitsSystemWindows="true"
                     android:padding="10dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/clothing_icon" />
+                    android:src="@drawable/fire_exit" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -213,7 +187,7 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:paddingHorizontal="5dp"
-                    android:text="Clothing"
+                    android:text="FIRE EXIT"
                     android:textColor="@android:color/black"
                     android:textSize="12dp" />
 
