@@ -37,9 +37,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
 }
-sceneform.asset('sampledata/model.obj',
+
+sceneform.asset('sampledata/model-triangulated.obj',
         'default',
-        'sampledata/model.sfa',
-        'src/main/assets/model')
+        'sampledata/model-triangulated.sfa',
+        'src/main/assets/model-triangulated')

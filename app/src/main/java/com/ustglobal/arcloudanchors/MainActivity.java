@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void createCloudAnchorModel(Anchor anchor) {
         ModelRenderable
                 .builder()
-                .setSource(this, Uri.parse("model.sfb"))
+                .setSource(this, Uri.parse("model-triangulated.sfb"))
                 .build()
                 .thenAccept(modelRenderable -> placeCloudAnchorModel(anchor, modelRenderable));
 
@@ -170,13 +170,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TransformableNode transformableNode = new TransformableNode(arFragment.getTransformationSystem());
 
         if (modelOptionsSpinner.getSelectedItem().toString().equals("Straight Arrow")) {
-            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 225));
+            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 180));
         }
         if (modelOptionsSpinner.getSelectedItem().toString().equals("Right Arrow")) {
-            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 135));
+            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 90));
         }
         if (modelOptionsSpinner.getSelectedItem().toString().equals("Left Arrow")) {
-            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 315));
+            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 270));
         }
         transformableNode.setParent(anchorNode);
         //adding the model to the transformable node
