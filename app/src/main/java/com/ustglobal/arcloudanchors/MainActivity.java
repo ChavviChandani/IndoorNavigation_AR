@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private CustomArFragment arFragment;
     private ArrayList anchorList;
-    public Spinner modelOptionsSpinner;
-    private static final String[] paths = {"Straight Arrow", "Right Arrow", "Left Arrow"};
     private String FROM, MODE;
 
     private enum AppAnchorState {
@@ -60,13 +58,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         anchorList = new ArrayList();
         TinyDB tinydb = new TinyDB(getApplicationContext());
         Button resolve = findViewById(R.id.resolve);
-        modelOptionsSpinner = findViewById(R.id.modelOptions);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, paths);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        modelOptionsSpinner.setAdapter(adapter);
-        modelOptionsSpinner.setOnItemSelectedListener(this);
 
         arFragment = (CustomArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
@@ -134,20 +125,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 Anchor resolvedAnchor = arFragment.getArSceneView().getSession().resolveCloudAnchor(anchorId);
                 createCloudAnchorModel(resolvedAnchor);
-
             }
-
-
         });
-
-        if (MODE.equalsIgnoreCase("user")) {
-            modelOptionsSpinner.setVisibility(View.GONE);
-        } else {
-            modelOptionsSpinner.setVisibility(View.VISIBLE);
-            resolve.setVisibility(View.VISIBLE);
-        }
-
-
     }
 
     private void showToast(String s) {
@@ -168,16 +147,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         /*AnchorNode cannot be zoomed in or moved
         So we create a TransformableNode with AnchorNode as the parent*/
         TransformableNode transformableNode = new TransformableNode(arFragment.getTransformationSystem());
-
-        if (modelOptionsSpinner.getSelectedItem().toString().equals("Straight Arrow")) {
-            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 180));
-        }
-        if (modelOptionsSpinner.getSelectedItem().toString().equals("Right Arrow")) {
-            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 90));
-        }
-        if (modelOptionsSpinner.getSelectedItem().toString().equals("Left Arrow")) {
-            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 270));
-        }
+        transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 180));
         transformableNode.setParent(anchorNode);
         //adding the model to the transformable node
         transformableNode.setRenderable(modelRenderable);
