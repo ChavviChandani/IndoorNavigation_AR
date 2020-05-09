@@ -40,14 +40,15 @@ public class Home extends AppCompatActivity implements View.OnClickListener, Pop
             popup.show();
         });
 
-        ImageButton electBtn = findViewById(R.id.apartment18Btn);
-        ImageButton toysBtn = findViewById(R.id.apartment30Btn);
-        ImageButton tvBtn = findViewById(R.id.packenhamhouseBtn);
-        ImageButton clothingBtn = findViewById(R.id.fireexitBtn);
-        electBtn.setOnClickListener(this);
-        toysBtn.setOnClickListener(this);
-        tvBtn.setOnClickListener(this);
-        clothingBtn.setOnClickListener(this);
+        ImageButton apartment18Btn = findViewById(R.id.apartment18Btn);
+        ImageButton apartment30Btn = findViewById(R.id.apartment30Btn);
+        ImageButton packenhamHouseBtn = findViewById(R.id.packenhamhouseBtn);
+        ImageButton fireExitBtn = findViewById(R.id.fireexitBtn);
+        // Initilizing on click listeners for all buttons
+        apartment18Btn.setOnClickListener(this);
+        apartment30Btn.setOnClickListener(this);
+        packenhamHouseBtn.setOnClickListener(this);
+        fireExitBtn.setOnClickListener(this);
     }
 
     @Override

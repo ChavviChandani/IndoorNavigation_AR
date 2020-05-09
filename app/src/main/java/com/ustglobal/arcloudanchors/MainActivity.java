@@ -1,5 +1,6 @@
 package com.ustglobal.arcloudanchors;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.net.Uri;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private CustomArFragment arFragment;
+    private CloudAnchorFragment arFragment;
     private ArrayList anchorList;
     private String FROM, MODE;
 
@@ -56,20 +57,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         setContentView(R.layout.activity_main);
         anchorList = new ArrayList();
+        // Context of the entire application is passed on to TinyDB
         TinyDB tinydb = new TinyDB(getApplicationContext());
         Button resolve = findViewById(R.id.resolve);
 
-        arFragment = (CustomArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+        arFragment = (CloudAnchorFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+        // This part of the code will be executed when the user taps on a plane
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
-            //Active only in Admin Mode
-            if(MODE.equalsIgnoreCase("admin")) {
+            //Will be used in Admin Mode
+            if(MODE.equalsIgnoreCase("admin"))
+            {
                 Log.d("HIT_RESULT:", hitResult.toString());
+                // Used to render 3D model on the top of this anchor
                 anchor = arFragment.getArSceneView().getSession().hostCloudAnchor(hitResult.createAnchor());
                 appAnchorState = AppAnchorState.HOSTING;
-                showToast("Hosting...");
-                createCloudAnchorModel(anchor);
+                showToast("Adding Arrow to the scene");
+                create3DModel(anchor);
             } else {
-                showToast("Anchor can be hosted only in Admin mode");
+                showToast("3D model can be added in Admin mode only");
             }
 
         });
@@ -124,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
 
                 Anchor resolvedAnchor = arFragment.getArSceneView().getSession().resolveCloudAnchor(anchorId);
-                createCloudAnchorModel(resolvedAnchor);
+                create3DModel(resolvedAnchor);
             }
         });
     }
@@ -133,20 +138,34 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText(this, s, Toast.LENGTH_LONG).show();
     }
 
-    private void createCloudAnchorModel(Anchor anchor) {
+    /**
+     * Used to build a 3D model
+     * @param anchor
+     */
+    private void create3DModel(Anchor anchor) {
         ModelRenderable
                 .builder()
                 .setSource(this, Uri.parse("model-triangulated.sfb"))
                 .build()
-                .thenAccept(modelRenderable -> placeCloudAnchorModel(anchor, modelRenderable));
+                .thenAccept(modelRenderable -> addModelToScene(anchor, modelRenderable))
+                .exceptionally(throwable -> {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage(throwable.getMessage()).show();
+                    return null;
+                });
 
     }
-
-    private void placeCloudAnchorModel(Anchor anchor, ModelRenderable modelRenderable) {
+    /**
+     * Used to add the 3D model created in create3Dmodel to the scene
+     * @param anchor
+     * @param modelRenderable
+     */
+    private void addModelToScene(Anchor anchor, ModelRenderable modelRenderable) {
+        // anchorNode will position itself based on anchor
         anchorNode = new AnchorNode(anchor);
-        /*AnchorNode cannot be zoomed in or moved
-        So we create a TransformableNode with AnchorNode as the parent*/
+        // AnchorNode cannot be zoomed in or moved so a TransformableNode is created where AnchorNode is the parent
         TransformableNode transformableNode = new TransformableNode(arFragment.getTransformationSystem());
+        // Setting the angle of 3D model
         transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 1f, 0), 180));
         transformableNode.setParent(anchorNode);
         //adding the model to the transformable node
@@ -154,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //adding this to the scene
         arFragment.getArSceneView().getScene().addChild(anchorNode);
     }
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
