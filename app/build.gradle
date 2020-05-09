@@ -40,10 +40,10 @@ dependencies {
 }
 
 
-//sceneform.asset('sampledata/footp.obj',
-//        'default',
-//        'sampledata/footp.sfa',
-//        'src/main/assets/footp')
+sceneform.asset('sampledata/footp.obj',
+        'default',
+        'sampledata/footp.sfa',
+        'src/main/assets/footp')
 
 sceneform.asset('sampledata/model.obj',
         'default',
