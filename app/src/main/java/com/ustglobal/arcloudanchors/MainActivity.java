@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         anchorList = new ArrayList();
         // Context of the entire application is passed on to TinyDB
-        TinyDB tinydb = new TinyDB(getApplicationContext());
+        DB tinydb = new DB(getApplicationContext());
         Button resolve = findViewById(R.id.resolve);
 
         arFragment = (CloudAnchorFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
@@ -94,13 +94,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 anchorList.add(anchorId);
 
                 if (FROM.equalsIgnoreCase(Home.APARTMENT18)) {
-                    tinydb.putListString(APARTMENT18, anchorList);
+                    tinydb.addListString(APARTMENT18, anchorList);
                 } else if (FROM.equalsIgnoreCase(Home.APARTMENT30)) {
-                    tinydb.putListString(APARTMENT30, anchorList);
+                    tinydb.addListString(APARTMENT30, anchorList);
                 } else if (FROM.equalsIgnoreCase(Home.PACKENHAMHOUSE)) {
-                    tinydb.putListString(PACKENHAMHOUSE, anchorList);
+                    tinydb.addListString(PACKENHAMHOUSE, anchorList);
                 } else if (FROM.equalsIgnoreCase(Home.FIREEXIT)) {
-                    tinydb.putListString(FIREEXIT, anchorList);
+                    tinydb.addListString(FIREEXIT, anchorList);
                 }
 
                 showToast("Anchor hosted successfully. Anchor Id: " + anchorId);

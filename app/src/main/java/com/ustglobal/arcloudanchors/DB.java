@@ -8,33 +8,32 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//import com.google.gson.Gson;
-
-
 /*
  *  The "‚‗‚" character is not a comma, it is the SINGLE LOW-9 QUOTATION MARK unicode 201A
  *  and unicode 2017 that are used for separating the items in a list.
  */
-public class TinyDB {
+public class DB {
 
-    /** Shared Preferences allows us to save and retrieve data in the form of key,value pair. */
+    /**
+     * Shared Preferences allows us to save and retrieve data in the form of key,value pair.
+     */
 
     private SharedPreferences preferences;
-    public TinyDB(Context appContext) {
+
+    public DB(Context appContext) {
         preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
     }
 
     /**
-     * Put ArrayList of String into SharedPreferences with 'key' and save
+     * Add ArrayList of String into SharedPreferences with 'key' and save
      *
      * @param key        SharedPreferences key
      * @param stringList ArrayList of String to be added
      */
-    public void putListString(String key, ArrayList<String> stringList) {
-        if(key == null){
+    public void addListString(String key, ArrayList<String> stringList) {
+        if (key == null) {
             throw new NullPointerException();
-        }
-        else {
+        } else {
             String[] myStringList = stringList.toArray(new String[stringList.size()]);
             preferences.edit().putString(key, TextUtils.join("‚‗‚", myStringList)).apply();
         }
@@ -49,9 +48,6 @@ public class TinyDB {
     public ArrayList<String> getListString(String key) {
         return new ArrayList<String>(Arrays.asList(TextUtils.split(preferences.getString(key, ""), "‚‗‚")));
     }
-
-
-
 
 
 }
