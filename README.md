@@ -2,4 +2,4 @@
 AR app for indoor navigation using ARcore and Sceneform.
 
 # Demo
-![Augmented Reality Indoor Navigation](demo.gif)
+![](ezgif.com-video-to-gif.gif)
